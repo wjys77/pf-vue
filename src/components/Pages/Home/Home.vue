@@ -6,6 +6,7 @@
     >
       <div
         class="direct-overlay"
+        v-if="portfolio.url"
         @click="openPage(portfolio.url)"
       >
         <div class="wrapper">
@@ -89,7 +90,6 @@ export default {
 
               for (let i=0; i<index; i++) {
                 const { style } = items[i],
-                      beforeTop = parseInt(style.top),
                       beforeLeft = parseInt(style.left),
                       beforeHeight = items[i].offsetHeight;
 
@@ -135,7 +135,6 @@ export default {
     background-color: white;
     transition: all 0.5s ease 0s;
     &:hover {
-      cursor: pointer;
       .direct-overlay {
         opacity: 1;
         transition: opacity 0.5s ease-in-out;
@@ -168,6 +167,9 @@ export default {
           margin-top: 8px;
           font-size: 14px;
         }
+      }
+      &:hover {
+        cursor: pointer;
       }
     }
     .pf-name {

@@ -1,10 +1,14 @@
 <template>
   <nav class="Nav">
     <a
+      @click="setActiveTag('')"
+      :class="{  active: activeTag === ''}"
+    >#ALL</a>
+    <a
       v-for="(tag, i) in tags"
-      @click="toggleTag(tag)"
+      @click="setActiveTag(tag)"
       :key="i"
-      :class="{ active: activeTags.indexOf(tag) !== -1 }"
+      :class="{ active: tag === activeTag }"
     >#{{ tag }}</a>
   </nav>
 </template>
@@ -16,7 +20,7 @@ export default {
   computed: {
     ...mapGetters([
       'tags',
-      'activeTags',
+      'activeTag',
     ]),
   },
   mounted () {
@@ -27,7 +31,7 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'toggleTag',
+      'setActiveTag',
     ]),
   }
 }

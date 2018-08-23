@@ -1,11 +1,26 @@
 <template>
   <header class="Header">
-    <div class="logo">
+    <div
+      class="logo"
+      @click="setActiveTag('')"
+    >
       <span>YS</span>
       <small>FRONTEND DEVELOPER</small>
     </div>
   </header>
 </template>
+
+<script>
+import { mapMutations } from 'vuex';
+
+export default {
+  methods: {
+    ...mapMutations([
+      'setActiveTag',
+    ]),
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One');

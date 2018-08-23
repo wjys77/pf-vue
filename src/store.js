@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     tags: ['typescript', 'es6', 'vue', 'react', 'jquery', 'html5', 'css3', 'sass', 'bootstrap', 'php', 'firebase'],
-    activeTags: [],
+    activeTag: '',
     items: [{
       name: `포트폴리오 사이트`,
       company: '개인 프로젝트',
@@ -63,7 +63,7 @@ export default new Vuex.Store({
         php로 개발된 다이소몰의 유지보수를 담당했습니다.<br/>
         php는 템플릿 언더바 게시판 솔루션을 주로 사용했습니다.
       `,
-      url: `http://www.a-land.co.kr`,
+      url: `https://www.daisomall.co.kr`,
       techs: ['jquery', 'html5', 'css3', 'php'],
     }, {
       name: `이택구 사랑채 펜션, 골프돔, 엑터게이트 등등..`,
@@ -85,30 +85,28 @@ export default new Vuex.Store({
       state.activeTags = [ ...state.tags ];
       state.activeItems = [ ...state.items ];
     },
-    toggleTag(state, payload) {
+    setActiveTag(state, payload) {
       // toggle tag
-      const index = state.activeTags.indexOf(payload)
-      if (index === -1) state.activeTags.push(payload);
-      else state.activeTags.splice(index, 1);
+      state.activeTag = payload;
 
       // set items
-      const activeItems = [];
-      state.items.map(item => {
-        const { techs } = item;
-        techs.some(tech => {
-          if (state.activeTags.indexOf(tech) !== -1) {
-            activeItems.push(item);
-            return true;
-          }
+      let activeItems = [];
+
+      if (payload === '') {
+        activeItems = [ ...state.items ];
+      } else {
+        state.items.map(item => {
+          const { techs } = item;
+          if (techs.indexOf(payload) !== -1) activeItems.push(item);
         });
-      });
+      }
 
       state.activeItems = activeItems;
     },
   },
   getters: {
     tags: state => state.tags,
-    activeTags: state => state.activeTags,
+    activeTag: state => state.activeTag,
     items: state => state.items,
     activeItems: state => state.activeItems,
   }
