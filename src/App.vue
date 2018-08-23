@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style lang='scss'>
-@import url('http://fonts.googleapis.com/earlyaccess/notosanskr.css');
+@import url('https://fonts.googleapis.com/earlyaccess/notosanskr.css');
 @import '@/scss/variables.scss';
 
 html,
