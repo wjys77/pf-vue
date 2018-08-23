@@ -1,29 +1,54 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div class="App">
+    <LayoutHeader />
+    <LayoutNav />
+    <div class="container">
+      <router-view/>
     </div>
-    <router-view/>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import LayoutHeader from '@/components/Header';
+import LayoutNav from '@/components/Nav';
+
+export default {
+  components: {
+    LayoutHeader,
+    LayoutNav,
+  }
 }
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+</script>
+
+<style lang='scss'>
+@import url('http://fonts.googleapis.com/earlyaccess/notosanskr.css');
+@import '@/scss/variables.scss';
+
+html,
+body,
+.App {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  background-color: #f2f2f2;
+  line-height: 125%;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 12.2px;
+  -ms-user-select: none; 
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  .container {
+    flex: 1;
+    width: $container-width;
+    margin: 0 auto;
+    position: relative;
   }
 }
 </style>
